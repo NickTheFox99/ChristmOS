@@ -1,16 +1,12 @@
 #include "../data/cube.png.h"
-#include "raylib.h"
+#include "consts.cpp"
 #include <cmath>
 #include <raylib-cpp.hpp>
+#include <raylib.h>
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
 #endif
-
-#define SCREEN_WIDTH (320)
-#define SCREEN_HEIGHT (240)
-#define WIN_WIDTH (1280)
-#define WIN_HEIGHT (720)
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
