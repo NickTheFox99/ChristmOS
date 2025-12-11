@@ -1,7 +1,7 @@
 #include "snow.h"
+#include "../consts.cpp"
 #include "Color.hpp"
 #include "Vector2.hpp"
-#include "consts.cpp"
 #include <raylib.h>
 
 #define MAX_SECS 4
