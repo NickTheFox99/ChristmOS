@@ -7,6 +7,7 @@
 #define MAX_SECS 4
 #define INV_CHANCE 5
 
+namespace Snow {
 Snow::Snow() { Snow(GetRandomValue(0, 320)); }
 Snow::Snow(uint x) { Snow(raylib::Vector2(x, 0)); }
 Snow::Snow(raylib::Vector2 pos) {
@@ -47,3 +48,4 @@ void Snow::Update() {
 void Snow::Draw() { raylib::Color::White().DrawPixel(position); }
 
 Snow::~Snow() = default;
+} // namespace Snow

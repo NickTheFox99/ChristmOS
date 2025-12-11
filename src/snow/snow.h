@@ -1,6 +1,7 @@
 #include <raylib-cpp.hpp>
 #include <sys/types.h>
 
+namespace Snow {
 class Snow {
 public:
   Snow();
@@ -21,3 +22,4 @@ private:
   inline void Move();
   inline void CheckLive();
 };
+} // namespace Snow
