@@ -5,17 +5,13 @@
 #include <raylib.h>
 
 namespace Snow {
-Snow::Snow() { Snow(GetRandomValue(0, 320)); }
-Snow::Snow(uint x) { Snow(raylib::Vector2(x, 0)); }
-Snow::Snow(raylib::Vector2 pos) {
-  position = pos;
-  currCycle = 0;
-  live = true;
-}
+Snow::Snow() : Snow(GetRandomValue(0, 320)) {}
+Snow::Snow(int x) : Snow(raylib::Vector2(x, 0)) {}
+Snow::Snow(raylib::Vector2 pos) : position(pos) {}
 
 void Snow::Move() {
   raylib::Vector2 move;
-  uint hMove = GetRandomValue(0, INV_CHANCE);
+  int hMove = GetRandomValue(0, INV_CHANCE);
   if (hMove <= 1) {
     hMove = hMove * 2 - 1;
   } else {
@@ -29,8 +25,9 @@ void Snow::Move() {
 bool Snow::IsAlive() { return live; }
 
 void Snow::CheckLive() {
-  if (position.y >= SCREEN_HEIGHT)
+  if (position.y >= SCREEN_HEIGHT) {
     live = false;
+  }
 }
 
 void Snow::Update() {

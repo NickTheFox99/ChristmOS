@@ -5,7 +5,7 @@ namespace Snow {
 class Snow {
 public:
   Snow();
-  Snow(uint x);
+  Snow(int x);
   Snow(raylib::Vector2 pos);
 
   void Update();
@@ -16,8 +16,8 @@ public:
 
 private:
   raylib::Vector2 position;
-  uint currCycle;
-  bool live;
+  uint currCycle = 0;
+  bool live = true;
 
   inline void Move();
   inline void CheckLive();
