@@ -6,9 +6,10 @@ namespace Snow {
 Manager::Manager() = default;
 Manager::~Manager() = default;
 
-void Manager::NewSnow() { snows.push_back(std::make_unique<Snow>()); }
-void Manager::NewSnows(int snows) {
-  for (int i = 0; i < snows; i++)
+void Manager::NewSnow() { snows.emplace_back(new Snow()); }
+void Manager::NewSnows(int count) {
+  snows.reserve(snows.size() + count);
+  for (int i = 0; i < count; i++)
     NewSnow();
 }
 
