@@ -7,8 +7,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Dependencies
 set(RAYLIB_VERSION 5.5)
 find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
-if(NOT raylib_FOUND) # If there's none, fetch and build raylib
-  include(FetchContent)
+include(FetchContent)
+set(FETCHCONTENT_QUIET NO)
+if(NOT raylib_DIR) # If there's none, fetch and build raylib
   FetchContent_Declare(
     raylib
     DOWNLOAD_EXTRACT_TIMESTAMP OFF
@@ -16,26 +17,16 @@ if(NOT raylib_FOUND) # If there's none, fetch and build raylib
   )
   FetchContent_GetProperties(raylib)
   if(NOT raylib_POPULATED) # Have we downloaded raylib yet?
-    set(FETCHCONTENT_QUIET NO)
     FetchContent_MakeAvailable(raylib)
   endif()
 endif()
 
-set(RAYLIB_CPP_VERSION "v5.5.0")
-find_package(raylib_cpp QUIET) # QUIET or REQUIRED
-if(NOT raylib_cpp_FOUND) # If there's none, fetch and build raylib
-  include(FetchContent)
-  FetchContent_Declare(
+FetchContent_Declare(
     raylib_cpp
-    DOWNLOAD_EXTRACT_TIMESTAMP OFF
-    URL https://github.com/RobLoach/raylib-cpp/archive/refs/tags/${RAYLIB_CPP_VERSION}.tar.gz
+    GIT_REPOSITORY https://github.com/RobLoach/raylib-cpp.git
+    GIT_TAG master
   )
-  FetchContent_GetProperties(raylib_cpp)
-  if(NOT raylib_cpp_POPULATED) # Have we downloaded raylib yet?
-    set(FETCHCONTENT_QUIET NO)
-    FetchContent_MakeAvailable(raylib_cpp)
-  endif()
-endif()
+FetchContent_MakeAvailable(raylib_cpp)
 
 # Our Project
 add_executable(${PROJECT_NAME})
