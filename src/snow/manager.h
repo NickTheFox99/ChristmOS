@@ -6,6 +6,7 @@ namespace Snow {
 class Manager {
 public:
   Manager();
+  void NewSnows(int snows);
   void NewSnow();
   void Update();
   void Draw();

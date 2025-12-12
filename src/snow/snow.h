@@ -17,7 +17,6 @@ public:
 private:
   raylib::Vector2 position;
   uint currCycle;
-  uint maxCycle;
   bool live;
 
   inline void Move();

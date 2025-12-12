@@ -7,6 +7,10 @@ Manager::Manager() = default;
 Manager::~Manager() = default;
 
 void Manager::NewSnow() { snows.push_back(std::make_unique<Snow>()); }
+void Manager::NewSnows(int snows) {
+  for (int i = 0; i < snows; i++)
+    NewSnow();
+}
 
 void Manager::Update() {
   for (auto snowi = 0; snowi < snows.size(); snowi++) {

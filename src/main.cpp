@@ -1,6 +1,5 @@
-#include "../data/cube.png.h"
 #include "consts.cpp"
-#include <cmath>
+#include "snow/manager.h"
 #include <raylib-cpp.hpp>
 #include <raylib.h>
 
@@ -18,25 +17,14 @@ raylib::Window window(WIN_WIDTH, WIN_HEIGHT, "game",
 
 raylib::RenderTexture2D target(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-raylib::Image texImg =
-    raylib::LoadImageFromMemory(".png", cube_png, cube_png_len);
-
-raylib::Texture2D texture = texImg.LoadTexture();
-
-raylib::Camera3D cam(raylib::Vector3(0.0f, 0.0f, std::sqrt(3.0f)),
-                     raylib::Vector3::Zero(), raylib::Vector3(0.0f, 1.0f, 0.0f),
-                     60.0f, CAMERA_PERSPECTIVE);
-
-raylib::Model cube(GenMeshCube(1.0f, 1.0f, 1.0f));
+Snow::Manager sMgr = Snow::Manager();
 
 int main(void) {
   window.SetMinSize({320, 240});
   window.SetTargetFPS(60);
   window.SetExitKey(KEY_BACKSPACE);
 
-  target.GetTexture().SetFilter(TEXTURE_FILTER_POINT);
-
-  cube.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = texture;
+  sMgr.NewSnows(10);
 
 #if defined(PLATFORM_WEB)
   emscripten_set_main_loop(MainLoop, 0, 1);
@@ -56,21 +44,12 @@ void MainLoop() {
     float scale =
         MIN((float)winWidth / SCREEN_WIDTH, (float)winHeight / SCREEN_HEIGHT);
 
-    cube.SetTransform(
-        raylib::Matrix::RotateXYZ(
-            raylib::Vector3(1.0f, 1.5f, 2.5f).Scale(window.GetFrameTime()))
-            .Multiply(cube.GetTransform()));
+    sMgr.Update();
 
     target.BeginMode();
     {
       ClearBackground(BLACK);
-      raylib::Vector2(160.0f, 120.0f)
-          .DrawCircle(120.0f, raylib::Color::White());
-      cam.BeginMode();
-      {
-        cube.Draw(raylib::Vector3::Zero());
-      }
-      cam.EndMode();
+      sMgr.Draw();
     }
     target.EndMode();
 

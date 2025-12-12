@@ -4,16 +4,12 @@
 #include "Vector2.hpp"
 #include <raylib.h>
 
-#define MAX_SECS 4
-#define INV_CHANCE 5
-
 namespace Snow {
 Snow::Snow() { Snow(GetRandomValue(0, 320)); }
 Snow::Snow(uint x) { Snow(raylib::Vector2(x, 0)); }
 Snow::Snow(raylib::Vector2 pos) {
   position = pos;
   currCycle = 0;
-  maxCycle = MAX_SECS;
   live = true;
 }
 
@@ -38,7 +34,7 @@ void Snow::CheckLive() {
 }
 
 void Snow::Update() {
-  if (currCycle >= maxCycle) {
+  if (currCycle >= MAX_SECS) {
     Move();
     CheckLive();
     currCycle = 0;
