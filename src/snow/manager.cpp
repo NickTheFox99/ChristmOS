@@ -13,6 +13,9 @@ void Manager::NewSnows(int snows) {
 }
 
 void Manager::Update() {
+  frames++;
+  if (frames % 2 == 1)
+    NewSnow();
   for (auto snowi = 0; snowi < snows.size(); snowi++) {
     auto &snow = snows[snowi];
     if (!snow->IsAlive()) {
@@ -28,7 +31,7 @@ void Manager::Draw() {
     snows[snowi]->Draw();
 }
 
-void Manager::Kill(uint pos) {
+void Manager::Kill(int pos) {
   std::swap(snows[pos], snows.back());
   snows.pop_back();
 }

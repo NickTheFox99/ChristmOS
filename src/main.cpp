@@ -24,8 +24,6 @@ int main(void) {
   window.SetTargetFPS(60);
   window.SetExitKey(KEY_BACKSPACE);
 
-  sMgr.NewSnows(10);
-
 #if defined(PLATFORM_WEB)
   emscripten_set_main_loop(MainLoop, 0, 1);
 #else

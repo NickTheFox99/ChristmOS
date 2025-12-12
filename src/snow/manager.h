@@ -14,6 +14,7 @@ public:
 
 private:
   std::vector<std::unique_ptr<Snow>> snows;
-  void Kill(uint pos);
+  void Kill(int pos);
+  int frames = 0;
 };
 } // namespace Snow
