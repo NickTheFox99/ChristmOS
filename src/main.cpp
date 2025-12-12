@@ -17,7 +17,7 @@ raylib::Window window(WIN_WIDTH, WIN_HEIGHT, "game",
 
 raylib::RenderTexture2D target(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-Snow::Manager sMgr = Snow::Manager();
+Snow::Manager sMgr;
 
 int main(void) {
   window.SetMinSize({320, 240});
