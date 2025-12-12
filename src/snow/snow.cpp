@@ -30,6 +30,8 @@ void Snow::Move() {
   position += move;
 }
 
+bool Snow::IsAlive() { return live; }
+
 void Snow::CheckLive() {
   if (position.y >= SCREEN_HEIGHT)
     live = false;

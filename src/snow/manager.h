@@ -13,5 +13,6 @@ public:
 
 private:
   std::vector<std::unique_ptr<Snow>> snows;
+  void Kill(uint pos);
 };
 } // namespace Snow
