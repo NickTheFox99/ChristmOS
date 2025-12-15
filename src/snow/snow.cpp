@@ -5,13 +5,13 @@
 #include <raylib.h>
 
 namespace Snow {
-Snow::Snow() : Snow(GetRandomValue(0, 320)) {}
-Snow::Snow(int x) : Snow(raylib::Vector2(x, 0)) {}
-Snow::Snow(raylib::Vector2 pos) : position(pos) {}
+Snowflake::Snowflake() : Snowflake(GetRandomValue(0, 320)) {}
+Snowflake::Snowflake(int x) : Snowflake(raylib::Vector2(x, 0)) {}
+Snowflake::Snowflake(raylib::Vector2 pos) : position(pos) {}
 
-void Snow::Move() {
+void Snowflake::Move() {
   raylib::Vector2 move;
-  int hMove = GetRandomValue(0, INV_CHANCE);
+  int hMove = GetRandomValue(0, INV_HORMOVE_CHANCE);
   if (hMove <= 1) {
     hMove = hMove * 2 - 1;
   } else {
@@ -22,16 +22,16 @@ void Snow::Move() {
   position += move;
 }
 
-bool Snow::IsAlive() { return live; }
+bool Snowflake::IsAlive() { return live; }
 
-void Snow::CheckLive() {
+void Snowflake::CheckLive() {
   if (position.y >= SCREEN_HEIGHT) {
     live = false;
   }
 }
 
-void Snow::Update() {
-  if (currCycle >= MAX_SECS) {
+void Snowflake::Update() {
+  if (currCycle >= MAX_CYCLE_FRAMES) {
     Move();
     CheckLive();
     currCycle = 0;
@@ -40,7 +40,7 @@ void Snow::Update() {
   currCycle++;
 }
 
-void Snow::Draw() { raylib::Color::White().DrawPixel(position); }
+void Snowflake::Draw() { raylib::Color::White().DrawPixel(position); }
 
-Snow::~Snow() = default;
+Snowflake::~Snowflake() = default;
 } // namespace Snow

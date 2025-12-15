@@ -13,7 +13,7 @@ public:
   ~Manager();
 
 private:
-  std::vector<std::unique_ptr<Snow>> snows;
+  std::vector<std::unique_ptr<Snowflake>> snows;
   void Kill(int pos);
   int frames = 0;
 };

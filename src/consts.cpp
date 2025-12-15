@@ -8,6 +8,10 @@ const int WIN_WIDTH = 1280;
 const int WIN_HEIGHT = 720;
 
 namespace Snow {
-const int MAX_SECS = 4;
-const int INV_CHANCE = 5;
+const int MAX_CYCLE_FRAMES = 4;
+const int INV_HORMOVE_CHANCE = 5;
 } // namespace Snow
+
+namespace Lights {
+const int MAX_CYCLE_FRAMES = 30;
+}

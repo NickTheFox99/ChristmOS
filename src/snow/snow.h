@@ -2,17 +2,17 @@
 #include <sys/types.h>
 
 namespace Snow {
-class Snow {
+class Snowflake {
 public:
-  Snow();
-  Snow(int x);
-  Snow(raylib::Vector2 pos);
+  Snowflake();
+  Snowflake(int x);
+  Snowflake(raylib::Vector2 pos);
 
   void Update();
   void Draw();
   bool IsAlive();
 
-  ~Snow();
+  ~Snowflake();
 
 private:
   raylib::Vector2 position;

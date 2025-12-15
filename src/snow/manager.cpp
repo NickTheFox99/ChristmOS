@@ -6,7 +6,7 @@ namespace Snow {
 Manager::Manager() = default;
 Manager::~Manager() = default;
 
-void Manager::NewSnow() { snows.emplace_back(new Snow()); }
+void Manager::NewSnow() { snows.emplace_back(new Snowflake()); }
 void Manager::NewSnows(int count) {
   snows.reserve(snows.size() + count);
   for (int i = 0; i < count; i++)
