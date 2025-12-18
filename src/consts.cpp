@@ -17,15 +17,15 @@ const int INV_HORMOVE_CHANCE = 5;
 
 namespace Lights {
 const int MAX_CYCLE_FRAMES = 30;
-const std::array<Vector2, 9> POSITIONS{{{112, 68},
-                                        {144, 60},
-                                        {196, 64},
-                                        {88, 124},
-                                        {136, 124},
-                                        {244, 120},
-                                        {236, 168},
-                                        {112, 112},
-                                        {188, 116}}};
+const std::array<Vector2, 9> POSITIONS{{{28, 17},
+                                        {36, 15},
+                                        {49, 16},
+                                        {22, 31},
+                                        {34, 31},
+                                        {61, 30},
+                                        {59, 42},
+                                        {28, 28},
+                                        {47, 29}}};
 const raylib::Color col1 = raylib::Color::Green();
 const raylib::Color col2 = raylib::Color::Red();
 } // namespace Lights

@@ -30,7 +30,7 @@ Snow::Manager sMgr;
 Lights::Manager lMgr;
 
 int main(void) {
-  window.SetMinSize({320, 240});
+  window.SetMinSize({SCREEN_WIDTH, SCREEN_HEIGHT});
   window.SetTargetFPS(60);
   window.SetExitKey(KEY_BACKSPACE);
 
@@ -61,8 +61,8 @@ void MainLoop() {
     {
       // ClearBackground(BLACK);
       DrawTexture(tree, 0, 0, raylib::Color::White());
-      sMgr.Draw();
       lMgr.Draw();
+      sMgr.Draw();
     }
     target.EndMode();
 

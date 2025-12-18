@@ -9,7 +9,7 @@ Manager::Manager() {
   lights.reserve(POSITIONS.size());
   for (const auto &position : POSITIONS) {
     lights.emplace_back(new Light(
-        position, col1, col2, 4,
+        position, col1, col2, 2,
         (cycle % 2 == 0) ? LightState::color1 : LightState::color2, 0));
     cycle++;
   }
