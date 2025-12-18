@@ -1,6 +1,8 @@
+#include "../data/tree.png.h"
+#include "Functions.hpp"
 #include "Vector2.hpp"
 #include "consts.cpp"
-#include "lights/light.h"
+#include "lights/manager.h"
 #include "snow/manager.h"
 #include <raylib-cpp.hpp>
 #include <raylib.h>
@@ -19,15 +21,20 @@ raylib::Window window(WIN_WIDTH, WIN_HEIGHT, "game",
 
 raylib::RenderTexture2D target(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-Snow::Manager sMgr;
+raylib::Image treeImg =
+    raylib::LoadImageFromMemory(".png", tree_png, tree_png_len);
 
-Lights::Light tLight(raylib::Vector2(160, 120), raylib::Color::Green(),
-                     raylib::Color::Red(), 5, Lights::color1, 0);
+raylib::Texture2D tree = treeImg.LoadTexture();
+
+Snow::Manager sMgr;
+Lights::Manager lMgr;
 
 int main(void) {
   window.SetMinSize({320, 240});
   window.SetTargetFPS(60);
   window.SetExitKey(KEY_BACKSPACE);
+
+  tree.SetFilter(TEXTURE_FILTER_POINT);
 
 #if defined(PLATFORM_WEB)
   emscripten_set_main_loop(MainLoop, 0, 1);
@@ -48,13 +55,14 @@ void MainLoop() {
         MIN((float)winWidth / SCREEN_WIDTH, (float)winHeight / SCREEN_HEIGHT);
 
     sMgr.Update();
-    tLight.Update();
+    lMgr.Update();
 
     target.BeginMode();
     {
-      ClearBackground(BLACK);
+      // ClearBackground(BLACK);
+      DrawTexture(tree, 0, 0, raylib::Color::White());
       sMgr.Draw();
-      tLight.Draw();
+      lMgr.Draw();
     }
     target.EndMode();
 
