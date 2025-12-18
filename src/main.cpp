@@ -1,4 +1,6 @@
+#include "Vector2.hpp"
 #include "consts.cpp"
+#include "lights/light.h"
 #include "snow/manager.h"
 #include <raylib-cpp.hpp>
 #include <raylib.h>
@@ -18,6 +20,9 @@ raylib::Window window(WIN_WIDTH, WIN_HEIGHT, "game",
 raylib::RenderTexture2D target(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 Snow::Manager sMgr;
+
+Lights::Light tLight(raylib::Vector2(160, 120), raylib::Color::Green(),
+                     raylib::Color::Red(), 5, Lights::color1, 0);
 
 int main(void) {
   window.SetMinSize({320, 240});
@@ -43,11 +48,13 @@ void MainLoop() {
         MIN((float)winWidth / SCREEN_WIDTH, (float)winHeight / SCREEN_HEIGHT);
 
     sMgr.Update();
+    tLight.Update();
 
     target.BeginMode();
     {
       ClearBackground(BLACK);
       sMgr.Draw();
+      tLight.Draw();
     }
     target.EndMode();
 

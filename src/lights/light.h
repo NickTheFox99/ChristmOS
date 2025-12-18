@@ -17,7 +17,7 @@ public:
   ~Light();
 
 private:
-  void SwitchState();
+  LightState SwitchState();
 
   raylib::Vector2 position;
   int radius;
