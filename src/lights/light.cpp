@@ -13,8 +13,10 @@ Light::~Light() = default;
 
 void Light::Update() {
   cycle++;
-  if (cycle >= MAX_CYCLE_FRAMES)
+  if (cycle >= MAX_CYCLE_FRAMES) {
     SwitchState();
+    cycle = 0;
+  }
 }
 
 void Light::Draw() {
