@@ -2,6 +2,7 @@
 #include "../consts.cpp"
 #include "Vector2.hpp"
 #include "raylib.h"
+#include <cstdio>
 
 namespace Lights {
 Light::Light(raylib::Vector2 position, raylib::Color color1,
@@ -20,8 +21,9 @@ void Light::Update() {
 }
 
 void Light::Draw() {
-  DrawCircleV(position, radius,
-              (state == Lights::LightState::color1) ? color1 : color2);
+  raylib::Color col = (state == Lights::LightState::color1) ? color1 : color2;
+  DrawCircleV(position, radius + 1, col.Alpha(0.5));
+  DrawCircleV(position, radius, col);
 }
 
 Lights::LightState Light::SwitchState() {
